@@ -1,3 +1,5 @@
+import config from "../data/config.json";
+
 type HeaderProps = {
   date: string;
   time: string;
@@ -7,7 +9,7 @@ export default function Header({ date, time }: HeaderProps) {
   return (
     <header className="header">
       <div className="school-name">
-        TN Information
+        {config.schoolName}
       </div>
 
       <div className="header-right">

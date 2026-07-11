@@ -1,48 +1,62 @@
-type ScheduleItem = {
-  time: string;
-  title: string;
-  current?: boolean;
-};
+import schedule from "../data/schedule.json";
+import config from "../data/config.json";
+import type { ScheduleItem } from "../types/schedule";
 
-const schedule: ScheduleItem[] = [
-  { time: "08:30", title: "朝礼" },
-  { time: "10:00", title: "職員会議" },
-  {
-    time: "13:00",
-    title: "保護者会",
-    current: true,
-  },
-];
+function toMinutes(value: string): number {
+  const [h, m] = value.split(":").map(Number);
+  return h * 60 + m;
+}
 
 export default function Schedule() {
+
+  const now = new Date();
+
+  const currentMinutes =
+    now.getHours() * 60 + now.getMinutes();
+
   return (
     <main className="main">
-      <h1>今日の予定</h1>
+
+      <h1>{config.title}</h1>
 
       <div className="timeline">
-        {schedule.map((item) => (
-          <div
-            className={
-              item.current
-                ? "timeline-item current"
-                : "timeline-item"
-            }
-            key={item.time}
-          >
-            <div className="timeline-time">
-              {item.time}
-            </div>
 
-            <div className="timeline-line">
-              <div className="dot" />
-            </div>
+        {(schedule as ScheduleItem[]).map((item) => {
 
-            <div className="timeline-title">
-              {item.title}
+          const current =
+            currentMinutes >= toMinutes(item.start) &&
+            currentMinutes < toMinutes(item.end);
+
+          return (
+            <div
+              key={item.start}
+              className={
+                current
+                  ? "timeline-item current"
+                  : "timeline-item"
+              }
+            >
+
+              <div className="timeline-time">
+                {item.start}
+              </div>
+
+              <div className="timeline-line">
+                <div className="dot" />
+              </div>
+
+              <div className="timeline-title">
+                {item.title}
+              </div>
+
             </div>
-          </div>
-        ))}
+          );
+
+        })}
+
       </div>
+
     </main>
   );
+
 }
