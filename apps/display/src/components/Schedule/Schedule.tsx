@@ -1,6 +1,6 @@
-import schedule from "../data/schedule.json";
-import config from "../data/config.json";
-import type { ScheduleItem } from "../types/schedule";
+import schedule from "../../data/schedule.json";
+import config from "../../data/config.json";
+import type { ScheduleItem } from "../../types/schedule";
 
 function toMinutes(value: string): number {
   const [h, m] = value.split(":").map(Number);

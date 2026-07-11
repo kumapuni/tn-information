@@ -1,0 +1,8 @@
+.footer{
+    height:70px;
+    display:flex;
+    align-items:center;
+    background:#003b7a;
+    color:white;
+    overflow:hidden;
+}

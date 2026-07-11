@@ -1,18 +1,32 @@
-import Header from "../components/Header";
-import Schedule from "../components/Schedule";
-import Footer from "../components/Footer";
+import Header from "../components/Header/Header";
+import Schedule from "../components/Schedule/Schedule";
+import Footer from "../components/Footer/Footer";
 
 type Props = {
   date: string;
   time: string;
 };
 
-export default function StandardLayout({ date, time }: Props) {
+export default function StandardLayout({
+  date,
+  time,
+}: Props) {
   return (
     <div className="app">
-      <Header date={date} time={time} />
-      <Schedule />
+
+      <Header
+        date={date}
+        time={time}
+      />
+
+      <main className="main">
+
+        <Schedule />
+
+      </main>
+
       <Footer />
+
     </div>
   );
 }

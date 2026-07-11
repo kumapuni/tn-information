@@ -1,6 +1,6 @@
-import Header from "../components/Header";
-import Schedule from "../components/Schedule";
-import Footer from "../components/Footer";
+import Header from "../components/Header/Header";
+import Schedule from "../components/Schedule/Schedule";
+import Footer from "../components/Footer/Footer";
 
 type Props = {
   date: string;
@@ -12,11 +12,18 @@ export default function EntranceLayout({
   time,
 }: Props) {
   return (
-    <div className="app entrance-layout">
+    <div className="app">
 
-      <Header date={date} time={time} />
+      <Header
+        date={date}
+        time={time}
+      />
 
-      <Schedule />
+      <main className="main">
+
+        <Schedule />
+
+      </main>
 
       <Footer />
 

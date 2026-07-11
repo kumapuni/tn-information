@@ -25,26 +25,23 @@ function App() {
   });
 
   const time = now.toLocaleTimeString("ja-JP", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
     hour12: false,
   });
 
-  switch (config.layout) {
+  const props = {
+    date,
+    time,
+  };
 
+  switch (config.layout) {
     case "entrance":
-      return (
-        <EntranceLayout
-          date={date}
-          time={time}
-        />
-      );
+      return <EntranceLayout {...props} />;
 
     default:
-      return (
-        <StandardLayout
-          date={date}
-          time={time}
-        />
-      );
+      return <StandardLayout {...props} />;
   }
 }
 

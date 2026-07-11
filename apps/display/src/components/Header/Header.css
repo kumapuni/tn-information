@@ -1,0 +1,44 @@
+.header{
+    height:110px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 40px;
+
+    background:#005BAC;
+
+    color:#fff;
+
+    box-sizing:border-box;
+}
+
+.school-name{
+
+    font-size:2.2rem;
+
+    font-weight:700;
+
+}
+
+.header-right{
+
+    text-align:right;
+}
+
+.date{
+
+    font-size:1.2rem;
+
+    margin-bottom:6px;
+}
+
+.clock{
+
+    font-size:2.6rem;
+
+    font-weight:bold;
+}
