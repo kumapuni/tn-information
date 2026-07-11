@@ -1,17 +1,16 @@
+import ticker from "../data/ticker.json";
+
 export default function Footer() {
+  const message = ticker.join("　◆　");
+
   return (
     <footer className="footer">
-
       <div className="ticker">
-
-        <div className="ticker-content">
-          ▶ 本日は体育館を17:00で閉館します　　
-          熱中症対策のため水分補給をお願いします　　
-          ご来校ありがとうございます　　
+        <div className="ticker-track">
+          <span>{message}</span>
+          <span>{message}</span>
         </div>
-
       </div>
-
     </footer>
   );
 }

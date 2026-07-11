@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-
 import "./App.css";
 
-import Header from "./components/Header";
-import Schedule from "./components/Schedule";
-import Footer from "./components/Footer";
+import StandardLayout from "./layouts/StandardLayout";
 
 function App() {
   const [now, setNow] = useState(new Date());
@@ -29,11 +26,10 @@ function App() {
   });
 
   return (
-    <div className="app">
-      <Header date={date} time={time} />
-      <Schedule />
-      <Footer />
-    </div>
+    <StandardLayout
+      date={date}
+      time={time}
+    />
   );
 }
 
