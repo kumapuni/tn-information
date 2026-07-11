@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
+import config from "./data/config.json";
+
 import StandardLayout from "./layouts/StandardLayout";
+import EntranceLayout from "./layouts/EntranceLayout";
 
 function App() {
   const [now, setNow] = useState(new Date());
@@ -25,12 +28,24 @@ function App() {
     hour12: false,
   });
 
-  return (
-    <StandardLayout
-      date={date}
-      time={time}
-    />
-  );
+  switch (config.layout) {
+
+    case "entrance":
+      return (
+        <EntranceLayout
+          date={date}
+          time={time}
+        />
+      );
+
+    default:
+      return (
+        <StandardLayout
+          date={date}
+          time={time}
+        />
+      );
+  }
 }
 
 export default App;

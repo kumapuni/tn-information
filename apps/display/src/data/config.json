@@ -1,4 +1,5 @@
 {
   "schoolName": "TN Information",
-  "title": "今日の予定"
+  "title": "今日の予定",
+  "layout": "standard"
 }
