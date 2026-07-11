@@ -59,3 +59,82 @@
   padding: 18px 30px;
   font-size: 1.5rem;
 }
+
+.school-name{
+    font-size:2.4rem;
+    font-weight:bold;
+}
+
+.header-right{
+    text-align:right;
+}
+
+.timeline{
+    width:70%;
+    margin:auto;
+}
+
+.timeline-item{
+    display:grid;
+    grid-template-columns:120px 50px 1fr;
+    align-items:center;
+    min-height:90px;
+}
+
+.timeline-line{
+    position:relative;
+    height:100%;
+    border-left:4px solid #3d78b9;
+}
+
+.dot{
+    position:absolute;
+    left:-10px;
+    top:34px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    background:#3d78b9;
+}
+
+.timeline-title{
+    font-size:2rem;
+}
+
+.current .timeline-title,
+.current .timeline-time{
+    color:#d60000;
+    font-weight:bold;
+}
+
+.current .dot{
+    background:#d60000;
+}
+
+.footer{
+    overflow:hidden;
+}
+
+.ticker{
+    width:100%;
+    overflow:hidden;
+}
+
+.ticker-content{
+    display:inline-block;
+    white-space:nowrap;
+    padding-left:100%;
+    animation:ticker 25s linear infinite;
+}
+
+@keyframes ticker{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-100%);
+    }
+
+}

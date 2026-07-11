@@ -6,6 +6,10 @@ type HeaderProps = {
 export default function Header({ date, time }: HeaderProps) {
   return (
     <header className="header">
+      <div className="school-name">
+        TN Information
+      </div>
+
       <div className="header-right">
         <div className="date">{date}</div>
         <div className="clock">{time}</div>
