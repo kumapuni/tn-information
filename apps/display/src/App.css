@@ -2,17 +2,16 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #eef4fb;
-  color: #333;
+  background: #eef5ff;
 }
 
-header {
+.header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 24px 40px;
-  background: #d8ebff;
-  border-bottom: 4px solid #9cc8f5;
+  align-items: flex-start;
+  padding: 25px 50px;
+  background: #d7ebff;
+  border-bottom: 4px solid #9ec8f5;
 }
 
 .date {
@@ -21,33 +20,42 @@ header {
 }
 
 .clock {
-  font-size: 4rem;
-  font-weight: 700;
+  font-size: 4.5rem;
+  font-weight: bold;
 }
 
-main {
+.main {
   flex: 1;
-  padding: 40px 80px;
+  padding: 50px;
 }
 
-main h1 {
+.main h1 {
   text-align: center;
   font-size: 3rem;
   margin-bottom: 50px;
 }
 
-.placeholder {
-  text-align: center;
-  font-size: 2rem;
-  color: #777;
+.schedule {
+  width: 70%;
+  margin: auto;
 }
 
-footer {
-  height: 60px;
-  background: #d8ebff;
-  border-top: 2px solid #9cc8f5;
+.schedule-item {
   display: flex;
-  align-items: center;
-  padding: 0 30px;
-  font-size: 1.2rem;
+  gap: 40px;
+  font-size: 2rem;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.time {
+  width: 120px;
+  font-weight: bold;
+}
+
+.footer {
+  background: #d7ebff;
+  border-top: 2px solid #9ec8f5;
+  padding: 18px 30px;
+  font-size: 1.5rem;
 }
