@@ -1,39 +1,33 @@
 import "./Schedule.css";
-
-import schedule from "../../data/schedule.json";
+import { getTodaySchedule } from "../../utils/schedule";
 import config from "../../data/config.json";
-import type { ScheduleItem } from "../../types/schedule";
-
-function toMinutes(value: string): number {
-  const [h, m] = value.split(":").map(Number);
-  return h * 60 + m;
-}
+import {
+  toMinutes,
+  currentMinutes
+} from "../../utils/time";
 
 export default function Schedule() {
 
-  const now = new Date();
+  const nowMinutes = currentMinutes();
 
-  const currentMinutes =
-    now.getHours() * 60 + now.getMinutes();
-
-  const items = schedule as ScheduleItem[];
+  const items = getTodaySchedule();
 
   const currentItem = items.find(item => {
     const start = toMinutes(item.start);
     const end = toMinutes(item.end);
 
     return (
-      currentMinutes >= start &&
-      currentMinutes < end
+      nowMinutes >= start &&
+      nowMinutes < end
     );
   });
 
   const nextItem = items.find(
-    item => toMinutes(item.start) > currentMinutes
+    item => toMinutes(item.start) > nowMinutes
   );
 
   const remainingMinutes = currentItem
-    ? toMinutes(currentItem.end) - currentMinutes
+    ? toMinutes(currentItem.end) - nowMinutes
     : null;
 
   return (
@@ -92,11 +86,11 @@ export default function Schedule() {
           const end = toMinutes(item.end);
 
           const current =
-            currentMinutes >= start &&
-            currentMinutes < end;
+            nowMinutes >= start &&
+            nowMinutes < end;
 
           const finished =
-            currentMinutes >= end;
+            nowMinutes >= end;
 
           return (
 

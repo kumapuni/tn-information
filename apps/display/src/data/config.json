@@ -2,5 +2,6 @@
   "schoolName": "土浦日本大学中等教育学校",
   "title": "今日の予定",
   "layout": "standard",
-  "themeColor": "#005BAC"
+  "themeColor": "#005BAC",
+  "defaultSchedule": "default"
 }
