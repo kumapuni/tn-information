@@ -1,48 +1,27 @@
-import { useEffect, useState } from "react";
+import Header from "./components/Header/Header";
+import Schedule from "./components/Schedule/Schedule";
+import Ticker from "./components/Ticker/Ticker";
+
 import "./App.css";
 
-import config from "./data/config.json";
+export default function App() {
 
-import StandardLayout from "./layouts/StandardLayout";
-import EntranceLayout from "./layouts/EntranceLayout";
+  return (
 
-function App() {
-  const [now, setNow] = useState(new Date());
+    <div className="app">
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setNow(new Date());
-    }, 1000);
+      <Header />
 
-    return () => clearInterval(timer);
-  }, []);
+      <main className="app-main">
 
-  const date = now.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    weekday: "long",
-  });
+        <Schedule />
 
-  const time = now.toLocaleTimeString("ja-JP", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
-  });
+      </main>
 
-  const props = {
-    date,
-    time,
-  };
+      <Ticker />
 
-  switch (config.layout) {
-    case "entrance":
-      return <EntranceLayout {...props} />;
+    </div>
 
-    default:
-      return <StandardLayout {...props} />;
-  }
+  );
+
 }
-
-export default App;

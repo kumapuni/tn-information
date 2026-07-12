@@ -1,18 +1,15 @@
-.schedule {
+.schedule{
 
-    flex: 1;
+    flex:1;
 
-    display: flex;
+    overflow-y:auto;
 
-    flex-direction: column;
+    overflow-x:hidden;
 
-    width: 90%;
+    padding:24px 80px 60px;
 
-    margin: auto;
+    box-sizing:border-box;
 
-    padding-bottom: 20px;
-
-    overflow: hidden;
 }
 
 .schedule-title {
@@ -239,4 +236,30 @@
     color: #666;
 
     font-size: 1rem;
+}
+
+.timeline{
+
+    padding-bottom:40px;
+
+}
+
+.schedule::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.schedule::-webkit-scrollbar-thumb{
+
+    background:#b8c8dc;
+
+    border-radius:8px;
+
+}
+
+.schedule::-webkit-scrollbar-track{
+
+    background:transparent;
+
 }
