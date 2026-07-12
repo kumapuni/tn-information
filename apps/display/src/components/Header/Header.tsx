@@ -16,23 +16,16 @@ export default function Header({
 }: HeaderProps) {
   return (
     <header className="header">
-
       <div className="header-left">
-
         <div className="school-name">
           {config.schoolName}
         </div>
-
       </div>
 
       <div className="header-right">
-
         <DateDisplay date={date} />
-
         <Clock time={time} />
-
       </div>
-
     </header>
   );
 }

@@ -1,44 +1,43 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 110px;
+
+  padding: 0 40px;
+
+  background: #005bac;
+  color: white;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.school-name {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.header-right {
+  text-align: right;
+}
+
+.date {
+  font-size: 1.2rem;
+  opacity: 0.95;
+}
+
+.clock {
+  margin-top: 4px;
+  font-size: 2.8rem;
+  font-weight: 700;
+}
 .header{
-    height:110px;
 
-    display:flex;
+    flex-shrink:0;
 
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:20px 40px;
-
-    background:#005BAC;
-
-    color:#fff;
-
-    box-sizing:border-box;
-}
-
-.school-name{
-
-    font-size:2.2rem;
-
-    font-weight:700;
-
-}
-
-.header-right{
-
-    text-align:right;
-}
-
-.date{
-
-    font-size:1.2rem;
-
-    margin-bottom:6px;
-}
-
-.clock{
-
-    font-size:2.6rem;
-
-    font-weight:bold;
+    height:90px;
 }

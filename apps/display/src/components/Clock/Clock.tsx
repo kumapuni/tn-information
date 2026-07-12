@@ -3,9 +3,5 @@ type ClockProps = {
 };
 
 export default function Clock({ time }: ClockProps) {
-  return (
-    <div className="clock">
-      {time}
-    </div>
-  );
+  return <div className="clock">{time}</div>;
 }

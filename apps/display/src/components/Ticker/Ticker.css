@@ -1,0 +1,36 @@
+.ticker{
+
+    overflow:hidden;
+
+    width:100%;
+}
+
+.ticker-track{
+
+    display:inline-flex;
+
+    white-space:nowrap;
+
+    animation:ticker 25s linear infinite;
+}
+
+.ticker-track span{
+
+    margin-right:80px;
+
+    font-size:1.2rem;
+}
+
+@keyframes ticker{
+
+    from{
+
+        transform:translateX(100%);
+    }
+
+    to{
+
+        transform:translateX(-100%);
+    }
+
+}

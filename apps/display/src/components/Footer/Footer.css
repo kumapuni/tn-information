@@ -1,8 +1,20 @@
 .footer{
-    height:70px;
-    display:flex;
-    align-items:center;
+
+    height:60px;
+
     background:#003b7a;
+
     color:white;
+
     overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+}
+.footer{
+
+    flex-shrink:0;
+
+    height:60px;
 }

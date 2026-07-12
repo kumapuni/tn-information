@@ -3,9 +3,5 @@ type DateProps = {
 };
 
 export default function DateDisplay({ date }: DateProps) {
-  return (
-    <div className="date">
-      {date}
-    </div>
-  );
+  return <div className="date">{date}</div>;
 }

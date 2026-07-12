@@ -1,0 +1,242 @@
+.schedule {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    width: 90%;
+
+    margin: auto;
+
+    padding-bottom: 20px;
+
+    overflow: hidden;
+}
+
+.schedule-title {
+
+    margin: 20px 0;
+
+    text-align: center;
+
+    font-size: 2.3rem;
+
+    flex-shrink: 0;
+}
+
+.next-event {
+
+    margin-bottom: 20px;
+
+    padding: 14px 20px;
+
+    border-radius: 10px;
+
+    background: #eef5ff;
+
+    border-left: 6px solid #005bac;
+
+    font-size: 1.1rem;
+
+    line-height: 1.8;
+
+    flex-shrink: 0;
+}
+.timeline {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    width: 92%;
+
+    margin: 0 auto;
+
+    padding-right: 6px;
+
+    padding-bottom: 24px;
+}
+
+.timeline-item {
+
+    display: grid;
+
+    grid-template-columns:
+        90px
+        40px
+        1fr
+        90px;
+
+    gap: 16px;
+
+    align-items: center;
+}
+
+.timeline-time {
+
+    text-align: right;
+
+    font-size: 1.4rem;
+
+    font-weight: bold;
+}
+
+.timeline-marker {
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    height: 82px;
+}
+
+.line {
+
+    position: absolute;
+
+    width: 4px;
+
+    height: 100%;
+
+    background: #d9d9d9;
+}
+
+.dot {
+
+    position: absolute;
+
+    top: 10px;
+
+    width: 18px;
+
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: #005bac;
+}
+.timeline-card {
+
+    width: 90%;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 16px 20px;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+
+    transition: .2s;
+}
+.timeline-card h2 {
+
+    margin: 0;
+
+    font-size: 1.4rem;
+}
+
+.timeline-card p {
+
+    margin-top: 6px;
+
+    color: #666;
+}
+
+.current .timeline-card {
+
+    background: #fff8e8;
+
+    border-left: 8px solid #ff9800;
+}
+
+.current .dot {
+
+    background: #ff9800;
+}
+
+.current-badge {
+
+    background: #ff9800;
+
+    color: white;
+
+    padding: 8px 16px;
+
+    border-radius: 999px;
+
+    text-align: center;
+
+    font-weight: bold;
+}
+
+.finished {
+
+    opacity: .45;
+}
+
+.finished .dot {
+
+    background: #999;
+}
+
+.finished .timeline-card {
+
+    background: #f5f5f5;
+}
+
+/* スクロールバーを細くする */
+
+.timeline::-webkit-scrollbar {
+
+    width: 5px;
+}
+
+.timeline::-webkit-scrollbar-thumb {
+
+    background: rgba(0,0,0,.2);
+
+    border-radius: 999px;
+}
+
+.timeline::-webkit-scrollbar-track {
+
+    background: transparent;
+}
+
+.next-label {
+
+    font-size: 1rem;
+
+    font-weight: bold;
+
+    color: #005bac;
+}
+
+.next-title {
+
+    margin-top: 6px;
+
+    font-size: 1.8rem;
+
+    font-weight: bold;
+}
+
+.next-time {
+
+    margin-top: 8px;
+
+    color: #666;
+
+    font-size: 1rem;
+}

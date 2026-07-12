@@ -1,3 +1,4 @@
+import "./Ticker.css";
 import ticker from "../../data/ticker.json";
 
 export default function Ticker() {
