@@ -1,65 +1,57 @@
-import monday from "../data/daily/monday.json";
-import tuesday from "../data/daily/tuesday.json";
-import wednesday from "../data/daily/wednesday.json";
-import thursday from "../data/daily/thursday.json";
-import friday from "../data/daily/friday.json";
-import saturday from "../data/daily/saturday.json";
-import defaultSchedule from "../data/daily/default.json";
+import normal from "../data/schedules/normal";
+import short from "../data/schedules/short";
+import exam from "../data/schedules/exam";
 
 import config from "../data/config.json";
 
 import type { ScheduleItem } from "../types/schedule";
 
 export type ScheduleKey =
-    | "monday"
-    | "tuesday"
-    | "wednesday"
-    | "thursday"
-    | "friday"
-    | "saturday"
-    | "default";
+  | "monday"
+  | "tuesday"
+  | "wednesday"
+  | "thursday"
+  | "friday"
+  | "saturday"
+  | "default";
 
-const schedules: Record<ScheduleKey, ScheduleItem[]> = {
+export type ScheduleMode =
+  | "normal"
+  | "short"
+  | "exam";
 
-    monday: monday as ScheduleItem[],
+const schedules = {
 
-    tuesday: tuesday as ScheduleItem[],
+    normal,
 
-    wednesday: wednesday as ScheduleItem[],
+    short,
 
-    thursday: thursday as ScheduleItem[],
-
-    friday: friday as ScheduleItem[],
-
-    saturday: saturday as ScheduleItem[],
-
-    default: defaultSchedule as ScheduleItem[],
+    exam,
 
 };
 
+function getScheduleMode(): ScheduleMode {
+
+  return config.scheduleMode as ScheduleMode;
+
+}
+
 export function getTodaySchedule(): ScheduleItem[] {
 
-    const dayNames: ScheduleKey[] = [
+  const dayNames: ScheduleKey[] = [
+    "default",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+  ];
 
-        "default",
+  const key = dayNames[new Date().getDay()];
 
-        "monday",
+  const mode = getScheduleMode();
 
-        "tuesday",
-
-        "wednesday",
-
-        "thursday",
-
-        "friday",
-
-        "saturday",
-
-    ];
-
-    const key = dayNames[new Date().getDay()];
-
-    return schedules[key] ??
-        schedules[config.defaultSchedule as ScheduleKey];
+  return schedules[mode][key];
 
 }

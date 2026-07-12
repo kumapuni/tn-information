@@ -3,5 +3,6 @@
   "title": "今日の予定",
   "layout": "standard",
   "themeColor": "#005BAC",
-  "defaultSchedule": "default"
+  "defaultSchedule": "default",
+  "scheduleMode": "normal"
 }
