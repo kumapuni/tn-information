@@ -263,3 +263,46 @@
     background:transparent;
 
 }
+
+.timeline {
+    flex: 1;
+    overflow-y: auto;
+
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+
+    padding-right: 8px;
+}
+.timeline-item.current {
+
+    scroll-margin-top: 140px;
+
+}
+
+.timeline-item.current .timeline-card {
+
+    animation: currentPulse 2s ease-in-out infinite;
+
+}
+
+@keyframes currentPulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+.timeline-item.current {
+
+    scroll-margin-top: 120px;
+
+}

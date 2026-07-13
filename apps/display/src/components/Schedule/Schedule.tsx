@@ -1,4 +1,5 @@
 import "./Schedule.css";
+import { useEffect, useRef, useState } from "react";
 import { getTodaySchedule } from "../../utils/schedule";
 import config from "../../data/config.json";
 import {
@@ -7,9 +8,61 @@ import {
 } from "../../utils/time";
 
 export default function Schedule() {
+  const currentRef = useRef<HTMLElement | null>(null);
+  const timelineRef = useRef<HTMLDivElement | null>(null);
 
-  const nowMinutes = currentMinutes();
+  const autoScrollEnabled = useRef(true);
 
+  const resumeTimer = useRef<number | null>(null);
+
+  const [nowMinutes, setNowMinutes] =
+  useState(currentMinutes());
+
+useEffect(() => {
+
+  const timer = setInterval(() => {
+
+    setNowMinutes(currentMinutes());
+
+  }, 1000);
+
+  return () => clearInterval(timer);
+
+}, []);
+
+useEffect(() => {
+
+  const timeline = timelineRef.current;
+
+  if (!timeline) return;
+
+  const onScroll = () => {
+
+    autoScrollEnabled.current = false;
+
+    if (resumeTimer.current) {
+      clearTimeout(resumeTimer.current);
+    }
+
+    resumeTimer.current = window.setTimeout(() => {
+
+      autoScrollEnabled.current = true;
+
+    }, 10000);
+
+  };
+
+  timeline.addEventListener("wheel", onScroll);
+  timeline.addEventListener("touchmove", onScroll);
+
+  return () => {
+
+    timeline.removeEventListener("wheel", onScroll);
+    timeline.removeEventListener("touchmove", onScroll);
+
+  };
+
+}, []);
   const items = getTodaySchedule();
 
   const currentItem = items.find(item => {
@@ -29,6 +82,22 @@ export default function Schedule() {
   const remainingMinutes = currentItem
     ? toMinutes(currentItem.end) - nowMinutes
     : null;
+
+   useEffect(() => {
+
+  if (!autoScrollEnabled.current) return;
+
+  if (!currentRef.current) return;
+
+  currentRef.current.scrollIntoView({
+
+    behavior: "smooth",
+
+    block: "nearest",
+
+  });
+
+}, [currentItem, nowMinutes]);
 
   return (
 
@@ -78,7 +147,10 @@ export default function Schedule() {
 
       )}
 
-      <div className="timeline">
+      <div 
+        className="timeline"
+        ref={timelineRef}
+        >
 
         {items.map(item => {
 
@@ -95,6 +167,7 @@ export default function Schedule() {
           return (
 
             <article
+              ref={current ? currentRef : null}
               key={item.start}
               className={
                 `timeline-item
