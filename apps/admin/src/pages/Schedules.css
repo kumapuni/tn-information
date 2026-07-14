@@ -1,0 +1,151 @@
+.mode-selector{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-bottom:24px;
+
+}
+
+.mode-selector button{
+
+    padding:10px 18px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2563eb;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+.mode-selector button:hover{
+
+    background:#1d4ed8;
+
+}
+
+.day-selector{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-bottom:24px;
+
+}
+
+.day-selector button{
+
+    width:60px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#f3f4f6;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.2s;
+
+}
+
+.day-selector button:hover{
+
+    background:#dbeafe;
+
+}
+
+.schedule-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:white;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+}
+
+.schedule-table th{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:14px;
+
+}
+
+.schedule-table td{
+
+    padding:14px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.schedule-table tr:hover{
+
+    background:#f8fafc;
+
+}
+
+.schedule-table button{
+
+    margin-right:8px;
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+}
+
+.table-actions{
+
+    margin-top:24px;
+
+}
+
+.add-button{
+
+    padding:12px 24px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#16a34a;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+.add-button:hover{
+
+    background:#15803d;
+
+}

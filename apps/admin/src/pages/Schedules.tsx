@@ -1,75 +1,62 @@
-import "./Dashboard.css";
+import { getDaySchedule } from "@shared/utils/schedule";
+
+import type {
+  ScheduleMode,
+  ScheduleDay,
+} from "@shared/utils/schedule";
+
 import { useState } from "react";
 
-type ScheduleItem = {
-  start: string;
-  end: string;
-  title: string;
-};
-
-const sample: ScheduleItem[] = [
-  {
-    start: "08:30",
-    end: "09:00",
-    title: "朝礼",
-  },
-  {
-    start: "10:00",
-    end: "11:00",
-    title: "職員会議",
-  },
-  {
-    start: "13:00",
-    end: "14:30",
-    title: "保護者会",
-  },
-];
+import "./Schedules.css";
 
 export default function Schedules() {
 
-  const [day, setDay] =
-    useState("monday");
+const [mode, setMode] =
+  useState<ScheduleMode>("normal");
+
+const [day, setDay] =
+  useState<ScheduleDay>("monday");
+
+  const schedule = getDaySchedule(
+  mode,
+  day
+);
 
   return (
 
     <>
 
-      <h2>予定管理</h2>
+      <h1>Schedules</h1>
 
-      <div className="toolbar">
+      <div className="mode-selector">
 
-        <label>
-
-          曜日
-
-          <select
-            value={day}
-            onChange={(e) =>
-              setDay(e.target.value)
-            }
-          >
-
-            <option value="monday">月曜日</option>
-
-            <option value="tuesday">火曜日</option>
-
-            <option value="wednesday">水曜日</option>
-
-            <option value="thursday">木曜日</option>
-
-            <option value="friday">金曜日</option>
-
-            <option value="saturday">土曜日</option>
-
-          </select>
-
-        </label>
-
-        <button className="primary">
-
-          ＋予定を追加
-
+        <button onClick={() => setMode("normal")}>
+          通常日課
         </button>
+
+        <button onClick={() => setMode("short")}>
+          短縮日課
+        </button>
+
+        <button onClick={() => setMode("exam")}>
+          試験日課
+        </button>
+
+      </div>
+
+      <div className="day-selector">
+
+        <button onClick={() => setDay("monday")}>月</button>
+
+        <button onClick={() => setDay("tuesday")}>火</button>
+
+        <button onClick={() => setDay("wednesday")}>水</button>
+
+        <button onClick={() => setDay("thursday")}>木</button>
+
+        <button onClick={() => setDay("friday")}>金</button>
+
+        <button onClick={() => setDay("saturday")}>土</button>
 
       </div>
 
@@ -85,7 +72,7 @@ export default function Schedules() {
 
             <th>予定</th>
 
-            <th></th>
+            <th>操作</th>
 
           </tr>
 
@@ -93,9 +80,9 @@ export default function Schedules() {
 
         <tbody>
 
-          {sample.map((item) => (
+          {schedule.map((item, index) => (
 
-            <tr key={item.start}>
+            <tr key={index}>
 
               <td>{item.start}</td>
 
@@ -105,9 +92,9 @@ export default function Schedules() {
 
               <td>
 
-                <button>編集</button>
+                <button>✏️</button>
 
-                <button>削除</button>
+                <button>🗑️</button>
 
               </td>
 
@@ -118,6 +105,16 @@ export default function Schedules() {
         </tbody>
 
       </table>
+
+      <div className="table-actions">
+
+        <button className="add-button">
+
+          ＋予定を追加
+
+        </button>
+
+      </div>
 
     </>
 
