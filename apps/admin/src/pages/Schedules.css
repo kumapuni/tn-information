@@ -149,3 +149,103 @@
     background:#15803d;
 
 }
+
+.modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.45);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 1000;
+
+}
+
+.modal {
+
+    width: 420px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 24px;
+
+}
+
+.modal h2{
+
+    margin-top:0;
+
+}
+
+.modal label{
+
+    display:block;
+
+    margin-bottom:16px;
+
+}
+
+.modal input{
+
+    width:100%;
+
+    padding:8px;
+
+    margin-top:6px;
+
+}
+
+.modal-buttons{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+}
+
+.schedule-table button{
+
+    margin:0 4px;
+
+    cursor:pointer;
+
+}
+
+.schedule-table button:hover{
+
+    opacity:.7;
+
+}
+
+.schedule-table button:first-child{
+
+    color:#0d6efd;
+
+}
+
+.schedule-table button:last-child{
+
+    color:#dc3545;
+
+}
+
+.empty {
+
+  text-align: center;
+
+  color: #888;
+
+  padding: 40px;
+
+}

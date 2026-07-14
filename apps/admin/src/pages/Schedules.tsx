@@ -5,7 +5,7 @@ import type {
   ScheduleDay,
 } from "@shared/utils/schedule";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./Schedules.css";
 
@@ -17,10 +17,73 @@ const [mode, setMode] =
 const [day, setDay] =
   useState<ScheduleDay>("monday");
 
-  const schedule = getDaySchedule(
-  mode,
-  day
-);
+const [editingIndex, setEditingIndex] =
+  useState<number | null>(null);
+
+const [isAdding, setIsAdding] =
+  useState(false);
+
+const [editItem, setEditItem] =
+  useState({
+    start: "",
+    end: "",
+    title: "",
+  });
+function openEditor(index: number) {
+
+  setEditingIndex(index);
+
+  setEditItem(schedule[index]);
+
+}
+const [schedule, setSchedule] =
+  useState(getDaySchedule(mode, day));
+  useEffect(() => {
+
+  setSchedule(
+    getDaySchedule(mode, day)
+  );
+
+}, [mode, day]);
+function saveEdit() {
+
+
+  const next = [...schedule];
+
+  if (isAdding) {
+
+    next.push(editItem);
+
+  } else if (editingIndex !== null) {
+
+    next[editingIndex] = editItem;
+
+  }
+
+  next.sort((a, b) =>
+    a.start.localeCompare(b.start)
+  );
+
+  setSchedule(next);
+
+  setEditingIndex(null);
+
+  setIsAdding(false);
+
+}
+function deleteItem(index: number) {
+
+  if (!confirm("この予定を削除しますか？")) {
+    return;
+  }
+
+  const next = [...schedule];
+
+  next.splice(index, 1);
+
+  setSchedule(next);
+
+}
 
   return (
 
@@ -80,42 +143,168 @@ const [day, setDay] =
 
         <tbody>
 
-          {schedule.map((item, index) => (
+  {schedule.length === 0 ? (
 
-            <tr key={index}>
+    <tr>
 
-              <td>{item.start}</td>
+      <td
+        colSpan={4}
+        className="empty"
+      >
+        予定がありません
+      </td>
 
-              <td>{item.end}</td>
+    </tr>
 
-              <td>{item.title}</td>
+  ) : (
 
-              <td>
+    schedule.map((item, index) => (
 
-                <button>✏️</button>
+      <tr key={index}>
 
-                <button>🗑️</button>
+        <td>{item.start}</td>
 
-              </td>
+        <td>{item.end}</td>
 
-            </tr>
+        <td>{item.title}</td>
 
-          ))}
+        <td>
 
-        </tbody>
+          <button
+            onClick={() => openEditor(index)}
+          >
+            ✏️
+          </button>
+
+          <button
+            onClick={() => deleteItem(index)}
+          >
+            🗑️
+          </button>
+
+        </td>
+
+      </tr>
+
+    ))
+
+  )}
+
+</tbody>
 
       </table>
 
       <div className="table-actions">
 
-        <button className="add-button">
+       <button
+  className="add-button"
+  onClick={() => {
 
-          ＋予定を追加
+    setEditItem({
+      start: "",
+      end: "",
+      title: "",
+    });
 
-        </button>
+    setIsAdding(true);
+
+    setEditingIndex(null);
+
+  }}
+>
+
+  ＋予定を追加
+
+</button>
 
       </div>
+      {(editingIndex !== null || isAdding) && (
 
+<div className="modal-overlay">
+
+  <div className="modal">
+
+    <h2>予定編集</h2>
+
+    <label>
+
+      開始
+
+<input
+  value={editItem.start}
+  onChange={(e) =>
+    setEditItem({
+      ...editItem,
+      start: e.target.value,
+    })
+  }
+/>
+
+    </label>
+
+    <label>
+
+      終了
+
+<input
+  value={editItem.end}
+  onChange={(e) =>
+    setEditItem({
+      ...editItem,
+      end: e.target.value,
+    })
+  }
+/>
+
+    </label>
+
+    <label>
+
+      タイトル
+
+ <input
+  value={editItem.title}
+  onChange={(e) =>
+    setEditItem({
+      ...editItem,
+      title: e.target.value,
+    })
+  }
+/>
+
+    </label>
+
+    <div className="modal-buttons">
+
+<button
+  onClick={saveEdit}
+>
+
+保存
+
+</button>
+
+      <button
+        onClick={() => {
+
+  setEditingIndex(null);
+
+  setIsAdding(false);
+
+}}
+      >
+
+        キャンセル
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+)}
     </>
 
   );
