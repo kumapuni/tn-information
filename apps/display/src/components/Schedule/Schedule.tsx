@@ -1,6 +1,7 @@
 import "./Schedule.css";
 import { useEffect, useRef, useState } from "react";
 import { getTodaySchedule } from "../../utils/schedule";
+
 import config from "../../data/config.json";
 import {
   toMinutes,
@@ -63,7 +64,7 @@ useEffect(() => {
   };
 
 }, []);
-  const items = getTodaySchedule();
+const items = getTodaySchedule();
 
   const currentItem = items.find(item => {
     const start = toMinutes(item.start);

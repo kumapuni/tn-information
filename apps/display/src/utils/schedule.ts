@@ -1,6 +1,10 @@
-import normal from "../data/schedules/normal";
-import short from "../data/schedules/short";
-import exam from "../data/schedules/exam";
+import monday from "../data/schedules/normal/monday.json";
+import tuesday from "../data/schedules/normal/tuesday.json";
+import wednesday from "../data/schedules/normal/wednesday.json";
+import thursday from "../data/schedules/normal/thursday.json";
+import friday from "../data/schedules/normal/friday.json";
+import saturday from "../data/schedules/normal/saturday.json";
+import defaultSchedule from "../data/schedules/normal/default.json";
 
 import config from "../data/config.json";
 
@@ -15,29 +19,17 @@ export type ScheduleKey =
   | "saturday"
   | "default";
 
-export type ScheduleMode =
-  | "normal"
-  | "short"
-  | "exam";
-
-const schedules = {
-
-    normal,
-
-    short,
-
-    exam,
-
+const schedules: Record<ScheduleKey, ScheduleItem[]> = {
+  monday: monday as ScheduleItem[],
+  tuesday: tuesday as ScheduleItem[],
+  wednesday: wednesday as ScheduleItem[],
+  thursday: thursday as ScheduleItem[],
+  friday: friday as ScheduleItem[],
+  saturday: saturday as ScheduleItem[],
+  default: defaultSchedule as ScheduleItem[],
 };
 
-function getScheduleMode(): ScheduleMode {
-
-  return config.scheduleMode as ScheduleMode;
-
-}
-
 export function getTodaySchedule(): ScheduleItem[] {
-
   const dayNames: ScheduleKey[] = [
     "default",
     "monday",
@@ -50,8 +42,6 @@ export function getTodaySchedule(): ScheduleItem[] {
 
   const key = dayNames[new Date().getDay()];
 
-  const mode = getScheduleMode();
-
-  return schedules[mode][key];
-
+  return schedules[key] ??
+    schedules[config.defaultSchedule as ScheduleKey];
 }
