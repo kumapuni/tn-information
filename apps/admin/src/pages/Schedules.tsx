@@ -1,5 +1,9 @@
-import { getDaySchedule } from "@shared/utils/schedule";
+import {
+  loadSchedule,
+  saveSchedule,
+} from "@shared/api/schedule";
 
+import type { ScheduleItem } from "@shared/types/schedule";
 import type {
   ScheduleMode,
   ScheduleDay,
@@ -37,15 +41,23 @@ function openEditor(index: number) {
 
 }
 const [schedule, setSchedule] =
-  useState(getDaySchedule(mode, day));
+  useState<ScheduleItem[]>([]);
+
   useEffect(() => {
 
-  setSchedule(
-    getDaySchedule(mode, day)
-  );
+  async function load() {
+
+    const data =
+      await loadSchedule(mode, day);
+
+    setSchedule(data);
+
+  }
+
+  load();
 
 }, [mode, day]);
-function saveEdit() {
+async function saveEdit() {
 
 
   const next = [...schedule];
@@ -66,12 +78,22 @@ function saveEdit() {
 
   setSchedule(next);
 
+  await saveSchedule(
+
+  mode,
+
+  day,
+
+  next,
+
+);
+
   setEditingIndex(null);
 
   setIsAdding(false);
 
 }
-function deleteItem(index: number) {
+async function deleteItem(index: number) {
 
   if (!confirm("この予定を削除しますか？")) {
     return;
@@ -83,6 +105,15 @@ function deleteItem(index: number) {
 
   setSchedule(next);
 
+  await saveSchedule(
+
+  mode,
+
+  day,
+
+  next,
+
+);
 }
 
   return (
