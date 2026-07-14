@@ -1,3 +1,4 @@
+import "./Dashboard.css";
 import { useState } from "react";
 
 type ScheduleItem = {
